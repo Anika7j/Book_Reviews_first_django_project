@@ -1,0 +1,22 @@
+
+{% extends "layout.html" %}
+{% block title %}
+Tweet
+{% endblock %}
+{% block content %}
+<h1 class="text-center mt-4">Welcome to Our Review Page</h1>
+<h2>
+    {% if form.instance.pk %}
+        Edit Review
+    {% else %}
+        Create Review
+    {% endif %}
+    <form method="post" enctype="multipart/form-data" class="form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <a href={% url "book_list" %}>Back to review list</a>
+</h2>
+
+{% endblock %} 

@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title %}
+Tweet
+{% endblock %}
+{% block content %}
+<h1 class="text-center mt-4">Welcome to Our Review Page</h1>
+<p>Here you can see all the reviews of the books that we have in our library.</p>
+
+<a class="btn btn-primary mb-4" href="{% url "book_review" %}">Create a review</a>
+<div class="container row gap-3">
+    {% for book in books %}
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{book.photo.url}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{book.title}}</h5>
+          <p class="card-text">{{book.text}}</p>
+          <p class="card-text">{{book.user}}</p>
+          {% if book.user == user %}
+          <a href="{% url "review_edit" book.id%}" class="btn btn-primary">Edit</a>
+          <a href="{% url "review_delete" book.id%}" class="btn btn-danger">Delete</a>
+          {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %} 
